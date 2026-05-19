@@ -10,7 +10,7 @@ Article analise the costs of living in Western and Eastern countries of Europe.
 
 
 Final Article:
-
+https://rawcdn.githack.com/data-journalism-26/final-project-anna_final/main/index.html
 
 Data:
 Data was downloaded manually from Eurostat, covering 37 European countries over the period 2015–2024. Later they were merged in Power Query editor.
