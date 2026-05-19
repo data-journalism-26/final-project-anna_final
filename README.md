@@ -5,8 +5,7 @@ Date: May 19, 2026
 Course: Data Journalism
 
 Overview:
-
-Article analise the costs of living in Western and Eastern countries of Europe.
+This article analyzes whether price levels in Central and Eastern Europe are catching up with Western Europe using Eurostat’s Price Level Index (PLI) data from 2015 to 2024. The findings reveal that while convergence is happening steadily—most notably in Czechia, Poland, and the Baltics—the inflation shock of 2021–2023 accelerated price rises faster than wages, showing that catching up in prices does not always translate into catching up in living standards.
 
 
 Final Article:
