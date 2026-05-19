@@ -1,192 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>The Cost of Catching Up</title>
-
+  <title>Are prices in Central and Eastern Europe catching up with the West?</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&display=swap" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;1,8..60,300;1,8..60,400&display=swap" rel="stylesheet">
   <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
-
   <style>
     :root {
       --ink: #1a1612;
       --paper: #f5f0e8;
-      --paper-dark: #ede7d9;
       --rule: #c8bfa8;
-      --accent: #b5341c;
-      --accent-light: #d4674f;
-      --east: #b5341c;
-      --west: #2a5080;
       --muted: #6b5e4e;
-      --col-width: 560px;
+      --red: #b5341c;
+      --blue: #2a5080;
     }
-
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    html { scroll-behavior: smooth; }
-
     body {
       font-family: 'Source Serif 4', Georgia, serif;
       background: var(--paper);
       color: var(--ink);
       line-height: 1.8;
     }
-
-    /* ---- MASTHEAD ---- */
-    .masthead {
-      border-bottom: 3px double var(--ink);
-      padding: 18px 40px 14px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: var(--paper);
-    }
-    .masthead-title {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-size: 0.75rem;
-      font-weight: 400;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
-    .masthead-date {
-      font-size: 0.7rem;
-      color: var(--muted);
-      letter-spacing: 0.1em;
-    }
-
-    /* ---- HEADER ---- */
     header {
-      max-width: 860px;
+      max-width: 780px;
       margin: 0 auto;
-      padding: 80px 40px 60px;
+      padding: 72px 40px 52px;
       border-bottom: 1px solid var(--rule);
     }
-
-    .kicker {
-      font-size: 0.7rem;
-      font-weight: 600;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 20px;
+    .meta {
+      font-size: 0.75rem;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      margin-bottom: 22px;
     }
-
     h1 {
       font-family: 'Playfair Display', Georgia, serif;
-      font-size: clamp(2.4rem, 5vw, 4.2rem);
+      font-size: clamp(2rem, 4.5vw, 3.4rem);
       font-weight: 900;
-      line-height: 1.08;
-      letter-spacing: -0.01em;
-      margin-bottom: 28px;
+      line-height: 1.1;
+      margin-bottom: 24px;
     }
-
     .deck {
-      font-size: 1.15rem;
+      font-size: 1.1rem;
       font-weight: 300;
       color: #3d3028;
-      max-width: 640px;
+      max-width: 620px;
       line-height: 1.7;
-      border-left: 3px solid var(--accent);
-      padding-left: 20px;
     }
-
-    .byline {
-      margin-top: 28px;
-      font-size: 0.72rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--muted);
-      padding-top: 14px;
-      border-top: 1px solid var(--rule);
-    }
-
-    /* ---- ARTICLE PROSE (intro) ---- */
-    .intro-prose {
+    .intro {
       max-width: 680px;
       margin: 48px auto 0;
-      padding: 0 40px 60px;
+      padding: 0 40px 56px;
     }
-    .intro-prose p {
-      font-size: 1.05rem;
+    .intro p {
+      font-size: 1.03rem;
       margin-bottom: 1.4em;
       color: #2a221a;
     }
-    .intro-prose p:first-child::first-letter {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-size: 4.2rem;
-      font-weight: 900;
-      float: left;
-      line-height: 0.78;
-      margin: 0.08em 0.08em 0 0;
-      color: var(--accent);
-    }
-
-    /* ---- SCROLLY LAYOUT ---- */
     .scrolly-wrapper {
       display: flex;
-      max-width: 1360px;
+      max-width: 1340px;
       margin: 0 auto;
-      position: relative;
     }
-
     .steps-col {
       width: 44%;
-      padding: 20px 60px 20px 40px;
+      padding: 20px 56px 20px 40px;
     }
-
     .step {
       min-height: 90vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
       opacity: 0.18;
-      transition: opacity 0.5s ease;
+      transition: opacity 0.45s ease;
       padding: 40px 0;
       border-top: 1px solid var(--rule);
     }
     .step:first-child { border-top: none; }
     .step.active { opacity: 1; }
-
-    .step-number {
-      font-size: 0.65rem;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 14px;
-      font-weight: 600;
-    }
-
     .step h2 {
       font-family: 'Playfair Display', Georgia, serif;
-      font-size: clamp(1.5rem, 2.2vw, 2rem);
+      font-size: clamp(1.4rem, 2vw, 1.85rem);
       font-weight: 700;
       line-height: 1.2;
-      margin-bottom: 20px;
+      margin-bottom: 18px;
     }
-
     .step p {
-      font-size: 0.97rem;
+      font-size: 0.96rem;
       margin-bottom: 1em;
       color: #2a221a;
     }
-
-    .callout {
-      background: var(--paper-dark);
-      border-left: 3px solid var(--accent);
-      padding: 14px 18px;
-      margin: 16px 0;
-      font-size: 0.9rem;
+    .legend {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+    .legend span {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.8rem;
       color: var(--muted);
     }
-    .callout strong { color: var(--ink); }
-
-    /* ---- STICKY CHART ---- */
+    .dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
     .chart-col {
       width: 56%;
       position: sticky;
@@ -194,195 +114,114 @@
       height: 100vh;
       display: flex;
       align-items: center;
-      justify-content: center;
     }
-
-    #chart {
-      width: 100%;
-      height: 92vh;
-      max-height: 800px;
-    }
-
-    /* ---- ARTICLE BODY ---- */
-    .article-body {
-      max-width: 720px;
+    #chart { width: 100%; height: 92vh; max-height: 800px; }
+    article {
+      max-width: 680px;
       margin: 0 auto;
       padding: 60px 40px 100px;
-      border-top: 3px double var(--ink);
+      border-top: 1px solid var(--rule);
     }
-
-    .article-body h3 {
+    article p { font-size: 1.03rem; margin-bottom: 1.4em; color: #2a221a; }
+    article h3 {
       font-family: 'Playfair Display', Georgia, serif;
-      font-size: 1.5rem;
+      font-size: 1.35rem;
       font-weight: 700;
-      margin: 2.4em 0 0.8em;
-      padding-top: 1.2em;
-      border-top: 1px solid var(--rule);
+      margin: 2.2em 0 0.7em;
     }
-    .article-body h3:first-child { border-top: none; margin-top: 0; padding-top: 0; }
-
-    .article-body p {
-      font-size: 1.03rem;
-      margin-bottom: 1.4em;
-      color: #2a221a;
-    }
-
-    .pull-quote {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-size: 1.45rem;
-      font-style: italic;
-      font-weight: 400;
-      line-height: 1.4;
-      color: var(--accent);
-      border-top: 2px solid var(--accent);
-      border-bottom: 2px solid var(--accent);
-      padding: 20px 0;
-      margin: 2em 0;
-    }
-
     .data-note {
-      font-size: 0.78rem;
+      font-size: 0.76rem;
       color: var(--muted);
       border-top: 1px solid var(--rule);
-      padding-top: 16px;
-      margin-top: 48px;
+      padding-top: 14px;
+      margin-top: 44px;
     }
-
-    /* ---- LEGEND BADGES ---- */
-    .legend-inline {
-      display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
-      margin: 10px 0 6px;
-    }
-    .legend-item {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 0.8rem;
-      color: var(--muted);
-    }
-    .legend-dot {
-      width: 10px; height: 10px;
-      border-radius: 50%;
-      flex-shrink: 0;
-    }
-
     footer {
       text-align: center;
-      padding: 30px;
-      font-size: 0.72rem;
+      padding: 28px;
+      font-size: 0.7rem;
       color: var(--muted);
-      letter-spacing: 0.1em;
       border-top: 1px solid var(--rule);
     }
-
-    @media (max-width: 900px) {
+    @media (max-width: 860px) {
       .scrolly-wrapper { flex-direction: column; }
       .steps-col { width: 100%; padding: 20px; }
-      .chart-col { width: 100%; position: relative; height: 60vw; min-height: 360px; }
+      .chart-col { width: 100%; position: relative; height: 65vw; min-height: 320px; }
       #chart { height: 100%; max-height: unset; }
     }
   </style>
 </head>
-
 <body>
 
-<div class="masthead">
-  <span class="masthead-title">European Economic Analysis</span>
-  <span class="masthead-date">Data: Eurostat · 2015–2024</span>
-</div>
-
 <header>
-  <p class="kicker">Price Convergence · Central &amp; Eastern Europe</p>
-  <h1>The Cost of<br>Catching Up</h1>
-  <p class="deck">
-    Eastern Europe is converging with Western Europe in price levels — but the relationship between prices, incomes, and productivity remains profoundly uneven. A decade of data tells a complex story of progress, shocks, and persistent gaps.
-  </p>
-  <p class="byline">Analysis based on Eurostat data &nbsp;·&nbsp; Price Level Index, GDP per capita, Median Income &amp; HICP</p>
+  <p class="meta">Anna Jurek &nbsp;&middot;&nbsp; 19.05.2025 &nbsp;&middot;&nbsp; Data: Eurostat 2015&ndash;2024</p>
+  <h1>Are prices in Central and Eastern Europe catching up with the West?</h1>
+  <p class="deck">Europe is highly diverse &mdash; high-income countries tend to have high price levels, but that alone tells us little about actual living standards. Price Level Index data from Eurostat, measuring the cost of a basket of goods and services relative to the EU average of 100, helps make this distinction clearer.</p>
 </header>
 
-<section class="intro-prose">
+<section class="intro">
   <p>
-    A single market, a shared currency for some, and three decades of integration: yet Europe's economic map still splits sharply along a diagonal running roughly from the Baltic to the Adriatic. On one side lie the high-price, high-income economies of Northwestern Europe. On the other, the Central and Eastern European states that joined the EU in 2004 and after, still chasing a standard of living their western neighbours take for granted.
+    Europe is far from economically uniform. Countries in Northwestern Europe combine high incomes with high prices, while Central and Eastern European countries sit at the other end &mdash; lower wages, lower costs, lower price levels. But high prices do not automatically mean a better quality of life. A country can be expensive precisely because it is wealthy, or because its costs are structurally high regardless of what people actually earn.
   </p>
   <p>
-    Price Level Index data from Eurostat — measuring what a basket of goods and services actually costs relative to the EU average of 100 — captures this divide with clinical precision. What follows is a decade-long portrait of convergence that is real, but fragile.
+    To look beyond GDP and cut closer to lived experience, it helps to use the Price Level Index (PLI) published by Eurostat. It measures what a basket of goods and services actually costs in a given country relative to the EU average of 100. A PLI of 50 means things are roughly half the EU average price; a PLI of 150 means they are half again more expensive. The decade from 2015 to 2024 shows that CEE countries are steadily converging upward &mdash; but not at the same pace across all dimensions.
   </p>
 </section>
 
-<!-- SCROLLY -->
 <div class="scrolly-wrapper">
-
   <div class="steps-col">
 
     <div class="step active" data-step="0">
-      <p class="step-number">01 · 2015 Baseline</p>
-      <h2>A continent divided at the starting line</h2>
+      <h2>A continent divided by a line</h2>
       <p>
-        In 2015, the price divide across Europe was stark. Switzerland topped the index at 170 — nearly three-and-a-half times the level of North Macedonia at 48. The EU-28 average stood at 100, but virtually every Central and Eastern European member state sat well below it.
+        Looking at the 2015 map, the split between higher- and lower-cost countries is immediately visible. Switzerland sits at the top with a PLI of 170 &mdash; nearly 3.5 times the level of North Macedonia at 48. That means the same basket of goods cost 3.5 times more in Switzerland than in North Macedonia.
       </p>
       <p>
-        Bulgaria and Romania hovered near 50 — meaning a basket of goods costing €100 in the EU on average cost just €50 there. Poland and Hungary sat in the 57–61 range. Even the more developed Czechia reached only 67, while Germany anchored Northwestern Europe at 107 and France and the Netherlands at 112–114.
+        Bulgaria and Romania were close to 50, Poland at 57.6, Hungary at 61.4. Even Czechia, the most developed among the Visegr&aacute;d group, reached only 66.8. Western Europe clustered firmly above 100: Germany at 107, France and the Netherlands around 112&ndash;114.
       </p>
-      <div class="callout">
-        <strong>Hover over any country</strong> on the map to see its exact Price Level Index in 2015. Darker blue indicates higher prices relative to the EU average.
-      </div>
+      <p>
+        The line dividing Europe was not just statistical &mdash; it reflected genuinely different cost structures: lower wages, cheaper services, lower productivity.
+      </p>
     </div>
 
     <div class="step" data-step="1">
-      <p class="step-number">02 · Convergence Trend 2015–2024</p>
-      <h2>A decade of rising prices in the East — but Northwest holds steady</h2>
+      <h2>Ten years of rising prices in the East</h2>
       <p>
-        Over the following nine years, CEE EU member states recorded consistent increases in their price levels. The most dramatic case is Czechia: from 66.8 in 2015 to a peak of 91.7 by 2023, closing to within 10 points of the EU average for the first time. Poland rose from 57.6 to 72.3. Croatia climbed from 67.8 to 76.6.
+        Between 2015 and 2024, all CEE EU member states recorded a steady rise in their Price Level Index. The most dramatic case is Czechia, which went from 66.8 in 2015 to 91.7 in 2023 &mdash; coming within 10 points of the EU average for the first time. Poland rose from 57.6 to 72.3. Croatia from 67.8 to 76.6.
       </p>
       <p>
-        The Baltic states — Estonia, Latvia, Lithuania — recorded particularly sharp post-2021 rises, reflecting their tight integration with EU energy markets and high exposure to supply-chain shocks.
+        The Baltic states &mdash; Estonia, Latvia, Lithuania &mdash; saw particularly sharp increases after 2021. Estonia&rsquo;s PLI crossed 100 by 2024, essentially reaching the EU average. Northwestern European countries, meanwhile, barely moved: Germany stayed in a 105&ndash;109 band, France around 112&ndash;113, the Netherlands around 114&ndash;115.
       </p>
-      <p>
-        Northwestern Europe, by contrast, showed remarkable stability. Germany, France, Austria, the Netherlands, and Belgium all remained within a narrow 107–117 band throughout the decade, barely moving despite external shocks.
-      </p>
-      <div class="legend-inline">
-        <span class="legend-item"><span class="legend-dot" style="background:#b5341c"></span> CEE EU members</span>
-        <span class="legend-item"><span class="legend-dot" style="background:#2a5080"></span> Northwestern Europe</span>
-      </div>
-      <div class="callout">
-        <strong>Convergence is real — but asymmetric.</strong> Prices in Eastern Europe are rising faster than wages, squeezing households even as the statistical gap with the West narrows.
+      <div class="legend">
+        <span><span class="dot" style="background:var(--red)"></span> CEE EU members</span>
+        <span><span class="dot" style="background:var(--blue)"></span> Northwestern Europe</span>
       </div>
     </div>
 
     <div class="step" data-step="2">
-      <p class="step-number">03 · Income vs. Output</p>
-      <h2>GDP grows — but median incomes tell a different story</h2>
+      <h2>GDP grows, but median incomes lag behind</h2>
       <p>
-        By 2024, a scatter of GDP per capita (in Purchasing Power Standards) against median household income reveals a Europe that remains sharply segmented. Luxembourg's GDP of 245 and median income of €37,781 stand in a class of their own. Norway, Switzerland, and Austria cluster in a high-income, high-output zone.
+        The 2024 scatter plot comparing GDP per capita with median household income shows that the two do not always move together. The CEE cluster sits in the lower-left: GDP indices of 66&ndash;91, median incomes mostly between &euro;11,000 and &euro;17,000. The EU median is &euro;21,245 &mdash; a threshold most CEE countries still fall short of.
       </p>
       <p>
-        CEE member states — Bulgaria, Hungary, Romania, Slovakia — record GDP indices of 66–91, but their median incomes cluster between €11,000 and €17,000 per year. The EU average for median income is €21,245, a threshold most CEE countries remain well below.
+        Luxembourg stands apart entirely, with a GDP index of 245 and median income of &euro;37,781. Ireland is the most notable outlier: a GDP of 221, heavily inflated by multinationals booking profits there, against a median income of &euro;23,288 &mdash; closer to France or Germany in practical terms.
       </p>
       <p>
-        Ireland is the most striking outlier: GDP per capita at 221 — inflated by multinational corporate accounting — against a median income of €23,288, closer to France or Germany. The GDP figure flatters the Irish economy; the income figure is more honest about lived standards.
+        The CEE cluster is less tightly correlated &mdash; countries at similar GDP levels show more varied income outcomes, which hints at different distributional dynamics within those economies.
       </p>
-      <div class="callout">
-        <strong>The takeaway:</strong> GDP convergence overstates living-standard convergence. In CEE economies, growth is real — but much of the gain flows to capital, not wages.
-      </div>
     </div>
 
     <div class="step" data-step="3">
-      <p class="step-number">04 · The Inflation Shock</p>
-      <h2>2022: The East takes the harder hit</h2>
+      <h2>The inflation shock hit the East harder</h2>
       <p>
-        The inflation shock of 2021–2023 disrupted the convergence trajectory across Europe, but its impact was far from uniform. Countries with higher 2022 HICP inflation — a measure of consumer price change — also tended to see sharper rises in their Price Level Index between 2021 and 2023.
+        The inflation crisis of 2021&ndash;2023 disrupted the convergence trend. Countries that were already converging upward in price levels were hit by additional inflationary pressure &mdash; and CEE countries took the brunt of it.
       </p>
       <p>
-        The Baltic states suffered the most: Estonia recorded HICP inflation of 19.4% in 2022, Lithuania 18.9%, Latvia 17.2%. All three saw their PLI rise by 7.5–11 points in two years. Hungary posted 15.3% inflation with a 6-point PLI rise. Poland, with 13.2%, gained 7.7 points.
+        Estonia recorded HICP inflation of 19.4% in 2022, Lithuania 18.9%, Latvia 17.2%. All three saw their PLI jump by 7.5&ndash;11 points in just two years. Hungary posted 15.3% inflation, Poland 13.2%, Czechia 14.8%. In each case, prices converged upward faster than wages could follow.
       </p>
       <p>
-        Northwestern economies fared better. Switzerland's HICP of 2.7% barely moved its PLI. France at 5.9% saw its PLI fall slightly. Germany at 8.7% rose by less than 2 points. The insulation reflects deeper monetary buffers, energy price controls, and more diversified supply chains.
+        Northwestern economies were largely insulated. Switzerland saw just 2.7% HICP inflation and barely moved. France&rsquo;s PLI actually declined slightly. Germany rose by less than 2 points.
       </p>
-      <div class="callout">
-        <strong>Norway is a notable outlier</strong> — its PLI fell sharply by 14 points despite modest inflation, likely reflecting kroner appreciation effects in the index calculation.
-      </div>
     </div>
 
   </div>
@@ -390,181 +229,91 @@
   <div class="chart-col">
     <div id="chart"></div>
   </div>
-
 </div>
 
-<!-- ARTICLE -->
-<article class="article-body">
-
-  <h3>The Architecture of a Divide</h3>
+<article>
 
   <p>
-    To understand why prices in Eastern Europe are lower — and why that gap is slowly closing — requires stepping back from the statistics into the structural realities of European economic geography. When Poland, Hungary, the Czech Republic, Slovakia, Slovenia, Estonia, Latvia, and Lithuania joined the European Union in 2004, they entered a single market with a single set of rules but profoundly different cost structures. Wages were a fraction of Western European levels. Land, services, and energy were cheaper. Productivity, measured by GDP per hour worked, lagged significantly.
+    Europe has always been economically diverse, but the scale of that diversity is easy to underestimate. When Central and Eastern European countries joined the EU, they brought cost structures shaped by decades of different economic development. Wages were a fraction of Western levels, services were cheaper, and so were energy and housing. Price convergence &mdash; the gradual rise of CEE price levels toward the EU average &mdash; was expected to follow as productivity grew and wages rose.
   </p>
 
   <p>
-    This is the Balassa-Samuelson effect in action: economies with lower productivity in tradeable sectors — manufacturing, agriculture, export services — tend to have lower price levels across the board, because wages in non-tradeable sectors (retail, housing, haircuts) track the wage level set in the tradeable sector. As productivity rises and wages increase, prices throughout the economy follow. This is not a failure — it is the mechanism of convergence working as intended.
+    The data confirms this is happening. But it also shows that convergence is not a single, smooth process. Prices can rise faster than wages. GDP can grow faster than household incomes. And external shocks &mdash; like the inflation surge of 2021&ndash;2023 &mdash; can accelerate price convergence in ways that actually worsen living standards rather than improve them.
+  </p>
+
+  <h3>Convergence, and its costs</h3>
+
+  <p>
+    Price convergence between Central and Eastern Europe and Northwestern Europe is real. Bulgaria, Romania, Poland &mdash; all have moved meaningfully closer to the EU average over the past decade. But convergence in prices does not automatically mean convergence in living standards. The inflation shock of 2021&ndash;2023 made this especially clear: the countries converging most rapidly were hit hardest, and the compression of real purchasing power will take years to unwind.
   </p>
 
   <p>
-    The data from 2015 to 2024 confirms this story, but with important caveats. The countries converging fastest are not always those where households feel best off.
-  </p>
-
-  <h3>Czechia: The Fastest Convergence Story</h3>
-
-  <p>
-    No country in the dataset better illustrates the speed — and the tensions — of convergence than Czechia. Starting from a PLI of 66.8 in 2015, already the highest among the Visegrád group, it surged to 91.7 by 2023 before pulling back slightly to 88.5 in 2024. In less than a decade, Czech price levels nearly reached the EU average. This reflects a genuinely high-performing economy: strong export manufacturing, a tight labour market, and rising wages that have fed through into service prices and housing costs.
-  </p>
-
-  <p>
-    But convergence in prices has not been matched by convergence in incomes. Czech median income in 2024 stands at €16,972 — higher than Bulgaria or Romania, but still well below the EU average of €21,245 and less than half the Austrian figure of €29,758. Czech households are increasingly paying Western European prices on Central European wages. That compression is the central tension of price convergence.
-  </p>
-
-  <div class="pull-quote">
-    "Catching up in prices is not the same as catching up in living standards. The former can happen within a decade. The latter takes a generation."
-  </div>
-
-  <h3>The Baltic Exception</h3>
-
-  <p>
-    Estonia, Latvia, and Lithuania occupy a particular position in this story. All three adopted the euro relatively early — Estonia in 2011, Latvia in 2014, Lithuania in 2015 — and have pursued tight fiscal and monetary policies aligned with Eurozone norms. Their integration into Nordic supply chains, German manufacturing networks, and Scandinavian retail markets has accelerated price transmission in both directions.
-  </p>
-
-  <p>
-    The result: by 2024, Estonia's PLI of 100.2 has essentially converged with the EU average — a remarkable achievement for a country at 77.5 in 2015. Latvia and Lithuania, at 82.7 and 81.7 respectively, are not far behind. Yet the 2022 inflation crisis exposed the vulnerability of this position. With HICP inflation above 17–19%, households faced a brutal squeeze: prices surging at Western European rates, wages still rooted in the Baltic reality. The PLI rose 8–11 points in two years, compressing real purchasing power sharply.
-  </p>
-
-  <h3>Northwestern Europe: The Stability Premium</h3>
-
-  <p>
-    What is perhaps most striking about the Northwestern European data is its sheer stability. Germany's PLI moved within a 105–109 range across the entire decade. France barely shifted from 112 to 111. The Netherlands, Belgium, and Austria all exhibit similarly flat trajectories. For economies this large and this integrated, such stability in relative price levels reflects deep structural anchors: diversified energy sourcing, strong trade union wage-setting, mature service sectors, and credible central bank frameworks.
-  </p>
-
-  <p>
-    The inflation shock of 2022 was absorbed with far less PLI disruption than in the East. France's PLI actually declined slightly, suggesting that French domestic prices rose more slowly than the EU average — an effect of government energy price caps and regulated tariffs. Germany, with its heavier exposure to gas prices, saw a modest 2-point rise. Switzerland, with HICP inflation of just 2.7%, barely moved at all.
-  </p>
-
-  <h3>The GDP Illusion</h3>
-
-  <p>
-    The scatter plot of GDP per capita against median income reveals something important about what economic statistics can and cannot tell us. Ireland's GDP per capita of 221 — more than twice the EU average — is one of the most distorted figures in European statistics, inflated by the profits of multinational corporations domiciled there for tax purposes. Strip that out, and Irish living standards, while genuinely high, are closer to Austria or Denmark than to Luxembourg.
-  </p>
-
-  <p>
-    For CEE economies, the distortion runs in the opposite direction. Romania's GDP of 77 and median income of €13,023 suggests a country performing broadly in line with its productivity level. But Bulgaria's GDP of 66 against a median income of €13,079 — actually fractionally above Romania despite lower GDP — hints at different distributional patterns within each economy. Croatia, with GDP at 78 and median income of €16,277, punches above its GDP weight on household income, suggesting a more equal distribution of recent growth.
-  </p>
-
-  <h3>What Convergence Actually Means</h3>
-
-  <p>
-    The decade from 2015 to 2024 produced genuine convergence in price levels between Central and Eastern Europe and Northwestern Europe. Bulgaria moved from 49.7 to 60.5. Romania from 55.1 to 64.1. Poland from 57.6 to 72.3. These are real, structural shifts — not statistical noise.
-  </p>
-
-  <p>
-    But the inflation shock of 2021–2023 accelerated price convergence in ways that outpaced income convergence. For households in Warsaw, Bucharest, or Vilnius, the result was a cost-of-living squeeze that felt sharper than it did in Berlin or Amsterdam. Prices converged upward faster than wages could follow.
-  </p>
-
-  <p>
-    The deepest lesson from this data is that convergence is not a single process — it is several overlapping ones, moving at different speeds. Price convergence is measurable and relatively fast. Income convergence is slower, shaped by wage bargaining, education, and institutional quality. Productivity convergence — the underlying driver of both — is slower still, measured in decades and conditioned on investment, infrastructure, and human capital.
-  </p>
-
-  <p>
-    Europe's eastern economies have made extraordinary progress since accession. But the cost of catching up — paid in squeezed household budgets, in rising rents, in the emigration of workers seeking wages that match the prices at home — remains unevenly distributed. The gap is narrowing. The journey is not over.
+    The gap between East and West in Europe is narrowing &mdash; but prices, incomes, and productivity are closing at different speeds. For households in Warsaw, Prague, or Vilnius, the statistical convergence is real. The lived experience of it is considerably more complicated.
   </p>
 
   <p class="data-note">
-    <strong>Data sources:</strong> Eurostat. Price Level Index (PLI) based on actual individual consumption relative to EU average (EU = 100). GDP per capita in Purchasing Power Standards. Median equivalised net income in PPS. HICP: Harmonised Index of Consumer Prices, annual average rate of change. CEE countries shown: Bulgaria, Croatia, Czechia, Estonia, Hungary, Latvia, Lithuania, Poland, Romania, Slovakia, Slovenia. Northwestern European countries shown: Austria, Belgium, Denmark, Finland, France, Germany, Iceland, Ireland, Luxembourg, Netherlands, Norway, Sweden, Switzerland.
+    Data: Eurostat. Price Level Index (PLI): actual individual consumption relative to EU average (EU = 100). GDP per capita in Purchasing Power Standards. Median equivalised net income in PPS. HICP: Harmonised Index of Consumer Prices, annual average. CEE countries: Bulgaria, Croatia, Czechia, Estonia, Hungary, Latvia, Lithuania, Poland, Romania, Slovakia, Slovenia. Northwestern Europe: Austria, Belgium, Denmark, Finland, France, Germany, Iceland, Ireland, Luxembourg, Netherlands, Norway, Sweden, Switzerland.
   </p>
 
 </article>
 
-<footer>
-  The Cost of Catching Up &nbsp;·&nbsp; European Economic Analysis &nbsp;·&nbsp; Data: Eurostat 2015–2024
-</footer>
+<footer>Anna Jurek &nbsp;&middot;&nbsp; 19.05.2025 &nbsp;&middot;&nbsp; Data: Eurostat 2015&ndash;2024</footer>
 
 <script>
 
-// ---- DATA ----
-
-const MAP_DATA = {"geo":["Albania","Austria","Belgium","Bosnia and Herzegovina","Bulgaria","Croatia","Cyprus","Czechia","Denmark","Estonia","European Union - 27 countries (from 2020)","Finland","France","Germany","Greece","Hungary","Iceland","Ireland","Italy","Latvia","Lithuania","Luxembourg","Malta","Montenegro","Netherlands","North Macedonia","Norway","Poland","Portugal","Romania","Serbia","Slovakia","Slovenia","Spain","Sweden","Switzerland","Türkiye","United Kingdom"],"pli":[48.3,109.3,111.2,53.8,49.7,67.8,92.2,66.8,142.8,77.5,100.0,125.8,112.0,107.0,88.2,61.4,136.1,128.3,106.4,73.1,64.1,125.5,83.9,56.2,114.1,48.1,152.1,57.6,86.5,55.1,51.4,70.7,86.0,94.8,127.8,170.0,61.4,142.6]};
+const MAP_DATA = {"geo":["Albania","Austria","Belgium","Bosnia and Herzegovina","Bulgaria","Croatia","Cyprus","Czechia","Denmark","Estonia","European Union - 27 countries (from 2020)","Finland","France","Germany","Greece","Hungary","Iceland","Ireland","Italy","Latvia","Lithuania","Luxembourg","Malta","Montenegro","Netherlands","North Macedonia","Norway","Poland","Portugal","Romania","Serbia","Slovakia","Slovenia","Spain","Sweden","Switzerland","T\u00fcrkiye","United Kingdom"],"pli":[48.3,109.3,111.2,53.8,49.7,67.8,92.2,66.8,142.8,77.5,100.0,125.8,112.0,107.0,88.2,61.4,136.1,128.3,106.4,73.1,64.1,125.5,83.9,56.2,114.1,48.1,152.1,57.6,86.5,55.1,51.4,70.7,86.0,94.8,127.8,170.0,61.4,142.6]};
 
 const LINE_DATA = [{"country":"Poland","year":[2015,2016,2017,2018,2019,2020,2021,2022,2023,2024],"pli":[57.6,55.9,58.8,59.6,59.9,59.1,60.5,62.0,68.2,72.3]},{"country":"Bulgaria","year":[2015,2016,2017,2018,2019,2020,2021,2022,2023,2024],"pli":[49.7,49.7,51.2,51.9,53.6,55.2,55.5,58.2,59.2,60.5]},{"country":"Romania","year":[2015,2016,2017,2018,2019,2020,2021,2022,2023,2024],"pli":[55.1,53.8,54.7,55.7,55.5,55.4,56.0,60.8,61.8,64.1]},{"country":"Hungary","year":[2015,2016,2017,2018,2019,2020,2021,2022,2023,2024],"pli":[61.4,62.4,65.9,65.9,67.4,66.3,68.2,67.7,74.2,74.3]},{"country":"Czechia","year":[2015,2016,2017,2018,2019,2020,2021,2022,2023,2024],"pli":[66.8,68.3,70.5,74.0,75.1,76.3,83.3,89.6,91.7,88.5]},{"country":"Croatia","year":[2015,2016,2017,2018,2019,2020,2021,2022,2023,2024],"pli":[67.8,68.5,69.2,70.6,71.3,70.7,69.4,73.1,74.9,76.6]},{"country":"Estonia","year":[2015,2016,2017,2018,2019,2020,2021,2022,2023,2024],"pli":[77.5,78.8,80.9,83.0,84.9,86.0,91.1,99.6,99.8,100.2]},{"country":"Latvia","year":[2015,2016,2017,2018,2019,2020,2021,2022,2023,2024],"pli":[73.1,74.5,74.9,76.7,77.9,78.5,75.2,80.8,82.7,82.7]},{"country":"Lithuania","year":[2015,2016,2017,2018,2019,2020,2021,2022,2023,2024],"pli":[64.1,65.1,66.1,67.5,68.0,69.9,71.6,79.3,82.9,81.7]},{"country":"Slovakia","year":[2015,2016,2017,2018,2019,2020,2021,2022,2023,2024],"pli":[70.7,77.9,82.4,84.5,86.0,83.2,82.4,85.9,84.0,84.6]},{"country":"Slovenia","year":[2015,2016,2017,2018,2019,2020,2021,2022,2023,2024],"pli":[86.0,86.9,86.5,87.1,86.9,87.3,87.1,88.1,89.5,89.5]},{"country":"Germany","year":[2015,2016,2017,2018,2019,2020,2021,2022,2023,2024],"pli":[107.0,107.1,106.5,105.8,107.0,106.9,107.2,108.4,109.0,108.8]},{"country":"Austria","year":[2015,2016,2017,2018,2019,2020,2021,2022,2023,2024],"pli":[109.3,110.4,111.6,112.1,113.2,111.7,108.5,107.9,111.5,111.7]},{"country":"France","year":[2015,2016,2017,2018,2019,2020,2021,2022,2023,2024],"pli":[112.0,112.4,113.0,113.9,113.4,112.9,114.3,112.2,111.7,111.2]},{"country":"Netherlands","year":[2015,2016,2017,2018,2019,2020,2021,2022,2023,2024],"pli":[114.1,115.8,114.8,114.3,117.1,116.2,115.5,114.2,115.6,115.1]},{"country":"Belgium","year":[2015,2016,2017,2018,2019,2020,2021,2022,2023,2024],"pli":[111.2,113.3,114.3,114.7,114.9,113.6,115.5,117.4,116.9,116.7]},{"country":"Denmark","year":[2015,2016,2017,2018,2019,2020,2021,2022,2023,2024],"pli":[142.8,146.1,143.1,141.4,143.4,142.6,140.8,146.3,141.6,140.7]},{"country":"Finland","year":[2015,2016,2017,2018,2019,2020,2021,2022,2023,2024],"pli":[125.8,126.1,125.1,125.7,126.3,126.4,125.8,125.1,123.8,122.3]},{"country":"Sweden","year":[2015,2016,2017,2018,2019,2020,2021,2022,2023,2024],"pli":[127.8,130.7,131.2,125.1,123.1,124.8,128.7,122.7,115.2,116.4]},{"country":"Norway","year":[2015,2016,2017,2018,2019,2020,2021,2022,2023,2024],"pli":[152.1,152.6,148.4,145.6,144.6,135.8,141.4,143.0,127.4,127.2]},{"country":"Switzerland","year":[2015,2016,2017,2018,2019,2020,2021,2022,2023,2024],"pli":[170.0,168.2,164.7,158.9,165.0,171.5,166.2,170.7,171.8,173.0]},{"country":"Luxembourg","year":[2015,2016,2017,2018,2019,2020,2021,2022,2023,2024],"pli":[125.5,127.9,128.8,126.9,132.0,137.3,138.7,134.7,131.9,131.1]},{"country":"Ireland","year":[2015,2016,2017,2018,2019,2020,2021,2022,2023,2024],"pli":[128.3,129.3,131.5,134.1,136.3,141.7,138.3,136.9,137.6,136.8]},{"country":"Iceland","year":[2015,2016,2017,2018,2019,2020,2021,2022,2023,2024],"pli":[136.1,158.8,174.2,168.4,161.8,142.7,149.8,159.8,157.4,162.1]}];
 
 const SCATTER_DATA = {"geo":["Austria","Belgium","Bulgaria","Croatia","Cyprus","Czechia","Denmark","Estonia","Finland","France","Germany","Greece","Hungary","Ireland","Latvia","Lithuania","Luxembourg","Malta","Netherlands","Norway","Poland","Portugal","Romania","Serbia","Slovakia","Slovenia","Spain","Sweden","Switzerland"],"gdp_pps":[119,117,66,78,99,91,127,79,102,98,116,69,76,221,68,87,245,110,134,160,78,82,77,52,75,90,91,111,151],"median_income":[29758,26361,13079,16277,22817,16972,24297,16482,23055,23222,25192,12436,11199,23288,14721,15110,37781,22077,27091,32338,18064,14446,13023,8971,11433,21572,20800,23693,29828]};
 
-const INFLATION_DATA = {"geo":["Albania","Austria","Belgium","Bosnia and Herzegovina","Bulgaria","Croatia","Cyprus","Czechia","Denmark","Estonia","European Union - 27 countries (from 2020)","Finland","France","Germany","Greece","Hungary","Iceland","Ireland","Italy","Latvia","Lithuania","Luxembourg","Malta","Montenegro","Netherlands","North Macedonia","Norway","Poland","Portugal","Romania","Serbia","Slovakia","Slovenia","Spain","Sweden","Switzerland","Türkiye","United Kingdom"],"hicp":[6.6,8.6,10.3,null,13.0,10.7,8.1,14.8,8.6,19.4,9.2,7.2,5.9,8.7,9.3,15.3,5.7,8.1,8.7,17.2,18.9,8.2,6.1,11.9,11.6,14.0,6.2,13.2,8.1,12.0,11.7,12.1,9.3,8.3,8.1,2.7,null,null],"pli_change":[3.6,3.0,1.4,2.3,3.7,5.5,-0.5,8.4,0.8,8.7,0.0,-2.0,-2.6,1.8,-1.5,6.0,7.6,-0.7,-3.0,7.5,11.3,-6.8,-2.3,3.1,0.1,5.2,-14.0,7.7,-2.2,5.8,5.6,1.6,2.4,-4.2,-13.5,5.6,3.0,-4.6]};
+const INFLATION_DATA = {"geo":["Albania","Austria","Belgium","Bosnia and Herzegovina","Bulgaria","Croatia","Cyprus","Czechia","Denmark","Estonia","European Union - 27 countries (from 2020)","Finland","France","Germany","Greece","Hungary","Iceland","Ireland","Italy","Latvia","Lithuania","Luxembourg","Malta","Montenegro","Netherlands","North Macedonia","Norway","Poland","Portugal","Romania","Serbia","Slovakia","Slovenia","Spain","Sweden","Switzerland","T\u00fcrkiye","United Kingdom"],"hicp":[6.6,8.6,10.3,null,13.0,10.7,8.1,14.8,8.6,19.4,9.2,7.2,5.9,8.7,9.3,15.3,5.7,8.1,8.7,17.2,18.9,8.2,6.1,11.9,11.6,14.0,6.2,13.2,8.1,12.0,11.7,12.1,9.3,8.3,8.1,2.7,null,null],"pli_change":[3.6,3.0,1.4,2.3,3.7,5.5,-0.5,8.4,0.8,8.7,0.0,-2.0,-2.6,1.8,-1.5,6.0,7.6,-0.7,-3.0,7.5,11.3,-6.8,-2.3,3.1,0.1,5.2,-14.0,7.7,-2.2,5.8,5.6,1.6,2.4,-4.2,-13.5,5.6,3.0,-4.6]};
 
-// ---- COLOUR HELPERS ----
-const CEE_COUNTRIES = new Set(["Bulgaria","Croatia","Czechia","Estonia","Hungary","Latvia","Lithuania","Poland","Romania","Slovakia","Slovenia"]);
-const NW_COUNTRIES  = new Set(["Austria","Belgium","Denmark","Finland","France","Germany","Iceland","Ireland","Luxembourg","Netherlands","Norway","Sweden","Switzerland"]);
+const CEE = new Set(["Bulgaria","Croatia","Czechia","Estonia","Hungary","Latvia","Lithuania","Poland","Romania","Slovakia","Slovenia"]);
+const NW  = new Set(["Austria","Belgium","Denmark","Finland","France","Germany","Iceland","Ireland","Luxembourg","Netherlands","Norway","Sweden","Switzerland"]);
 
-const CEE_COLOR = "#b5341c";
-const NW_COLOR  = "#2a5080";
+const RED  = "#b5341c";
+const BLUE = "#2a5080";
 
-function getColor(country) {
-  if (CEE_COUNTRIES.has(country)) return CEE_COLOR;
-  if (NW_COUNTRIES.has(country))  return NW_COLOR;
-  return "#8a7f72";
-}
-
-// ---- PLOTLY LAYOUT DEFAULTS ----
-const LAYOUT_BASE = {
+const BASE = {
   paper_bgcolor: "rgba(0,0,0,0)",
-  plot_bgcolor: "rgba(245,240,232,0.5)",
+  plot_bgcolor: "rgba(245,240,232,0.4)",
   font: { family: "'Source Serif 4', Georgia, serif", color: "#1a1612" },
-  margin: { t: 60, r: 30, b: 60, l: 60 },
+  margin: { t: 56, r: 28, b: 56, l: 58 },
   hoverlabel: {
     bgcolor: "#1a1612",
-    font: { color: "#f5f0e8", family: "'Source Serif 4', Georgia, serif", size: 13 },
+    font: { color: "#f5f0e8", family: "'Source Serif 4', Georgia, serif", size: 12 },
     bordercolor: "#1a1612"
   }
 };
 
-function titleLayout(text) {
+function chartTitle(text) {
   return {
-    text: `<b>${text}</b>`,
-    font: { family: "'Playfair Display', Georgia, serif", size: 17, color: "#1a1612" },
+    text: "<b>" + text + "</b>",
+    font: { family: "'Playfair Display', Georgia, serif", size: 16, color: "#1a1612" },
     x: 0.02, xanchor: "left"
   };
 }
 
-// ---- CHART 0: MAP ----
 function drawMap() {
   const { geo, pli } = MAP_DATA;
-
-  const hoverText = geo.map((g, i) => `<b>${g}</b><br>PLI: ${pli[i].toFixed(1)}`);
-
   Plotly.react("chart", [{
     type: "choropleth",
     locationmode: "country names",
     locations: geo,
     z: pli,
-    text: hoverText,
+    text: geo.map((g, i) => "<b>" + g + "</b><br>PLI: " + pli[i].toFixed(1)),
     hovertemplate: "%{text}<extra></extra>",
-    colorscale: [
-      [0,    "#f5e8d8"],
-      [0.15, "#d4b896"],
-      [0.3,  "#b08060"],
-      [0.45, "#8a5840"],
-      [0.6,  "#6a3825"],
-      [0.75, "#4a1f10"],
-      [1,    "#1a0808"]
-    ],
+    colorscale: [[0,"#f5e8d8"],[0.15,"#d4b896"],[0.3,"#b08060"],[0.45,"#8a5840"],[0.6,"#6a3825"],[0.75,"#4a1f10"],[1,"#1a0808"]],
     zmin: 40, zmax: 180,
-    colorbar: {
-      title: { text: "PLI (EU=100)", side: "right", font: { size: 11 } },
-      thickness: 14,
-      len: 0.6,
-      tickfont: { size: 11 }
-    }
+    colorbar: { title: { text: "PLI (EU=100)", side: "right", font: { size: 11 } }, thickness: 13, len: 0.6, tickfont: { size: 11 } }
   }], {
-    ...LAYOUT_BASE,
-    title: titleLayout("Price Level Index across Europe, 2015"),
+    ...BASE,
+    title: chartTitle("Price Level Index across Europe, 2015"),
     geo: {
       scope: "europe",
       showland: true, landcolor: "#e8e0d0",
       showocean: true, oceancolor: "#d4e0e8",
-      showlakes: true, lakecolor: "#d4e0e8",
       showcoastlines: true, coastlinecolor: "#b0a090",
       showframe: false,
       projection: { type: "natural earth" }
@@ -572,232 +321,108 @@ function drawMap() {
   });
 }
 
-// ---- CHART 1: LINE ----
 function drawLine() {
-  const ceeCountries = LINE_DATA.filter(d => CEE_COUNTRIES.has(d.country));
-  const nwCountries  = LINE_DATA.filter(d => NW_COUNTRIES.has(d.country));
-
-  function makeTrace(d, isCEE) {
-    const color = isCEE ? CEE_COLOR : NW_COLOR;
+  const traces = LINE_DATA.map(d => {
+    const isCEE = CEE.has(d.country);
     return {
-      x: d.year,
-      y: d.pli,
-      mode: "lines",
-      name: d.country,
-      line: {
-        color,
-        width: isCEE ? 2.2 : 1.6,
-        dash: isCEE ? "solid" : "dot"
-      },
-      hovertemplate: `<b>${d.country}</b><br>Year: %{x}<br>PLI: %{y:.1f}<extra></extra>`
+      x: d.year, y: d.pli,
+      mode: "lines", name: d.country,
+      line: { color: isCEE ? RED : BLUE, width: isCEE ? 2.2 : 1.6, dash: isCEE ? "solid" : "dot" },
+      hovertemplate: "<b>" + d.country + "</b><br>%{x}: %{y:.1f}<extra></extra>"
     };
-  }
-
-  const traces = [
-    ...ceeCountries.map(d => makeTrace(d, true)),
-    ...nwCountries.map(d => makeTrace(d, false)),
-    // EU average reference line
-    {
-      x: [2015, 2024], y: [100, 100],
-      mode: "lines",
-      name: "EU average",
-      line: { color: "#888", width: 1, dash: "longdash" },
-      hovertemplate: "EU average: 100<extra></extra>"
-    }
-  ];
-
+  });
+  traces.push({
+    x: [2015, 2024], y: [100, 100],
+    mode: "lines", name: "EU average",
+    line: { color: "#999", width: 1, dash: "longdash" },
+    hoverinfo: "skip"
+  });
   Plotly.react("chart", traces, {
-    ...LAYOUT_BASE,
-    title: titleLayout("Price Level Index: CEE vs Northwestern Europe, 2015–2024"),
-    xaxis: {
-      title: { text: "Year", font: { size: 12 } },
-      tickfont: { size: 11 },
-      showgrid: false,
-      zeroline: false
-    },
-    yaxis: {
-      title: { text: "Price Level Index (EU=100)", font: { size: 12 } },
-      tickfont: { size: 11 },
-      gridcolor: "#ddd5c4",
-      zeroline: false,
-      range: [40, 185]
-    },
-    legend: {
-      orientation: "v",
-      x: 1.02, y: 1,
-      font: { size: 10 },
-      tracegroupgap: 2
-    },
-    annotations: [
-      {
-        x: 2016.5, y: 101.5,
-        text: "EU average = 100",
-        showarrow: false,
-        font: { size: 10, color: "#888" }
-      }
-    ],
-    shapes: [{
-      type: "rect",
-      x0: 2021, x1: 2023,
-      y0: 40, y1: 185,
-      fillcolor: "rgba(181,52,28,0.06)",
-      line: { width: 0 }
-    }]
+    ...BASE,
+    title: chartTitle("Price Level Index: CEE vs Northwestern Europe, 2015\u20132024"),
+    xaxis: { tickfont: { size: 11 }, showgrid: false, zeroline: false },
+    yaxis: { title: { text: "PLI (EU=100)", font: { size: 11 } }, tickfont: { size: 11 }, gridcolor: "#ddd5c4", zeroline: false, range: [40, 185] },
+    legend: { orientation: "v", x: 1.01, y: 1, font: { size: 9 } },
+    annotations: [{ x: 2017, y: 101.8, text: "EU avg = 100", showarrow: false, font: { size: 10, color: "#999" } }],
+    shapes: [{ type: "rect", x0: 2021, x1: 2023, y0: 40, y1: 185, fillcolor: "rgba(181,52,28,0.05)", line: { width: 0 } }]
   });
 }
 
-// ---- CHART 2: SCATTER ----
 function drawScatter() {
   const { geo, gdp_pps, median_income } = SCATTER_DATA;
-
-  // Filter to CEE + NW only
-  const filtered = geo.map((g, i) => ({ g, gdp: gdp_pps[i], inc: median_income[i] }))
-    .filter(d => CEE_COUNTRIES.has(d.g) || NW_COUNTRIES.has(d.g));
-
-  const cee = filtered.filter(d => CEE_COUNTRIES.has(d.g));
-  const nw  = filtered.filter(d => NW_COUNTRIES.has(d.g));
-
-  function makeTrace(arr, isCEE) {
-    const color = isCEE ? CEE_COLOR : NW_COLOR;
-    const name  = isCEE ? "CEE EU members" : "Northwestern Europe";
+  const all = geo.map((g, i) => ({ g, gdp: gdp_pps[i], inc: median_income[i] })).filter(d => CEE.has(d.g) || NW.has(d.g));
+  const cee = all.filter(d => CEE.has(d.g));
+  const nw  = all.filter(d => NW.has(d.g));
+  function trace(arr, isCEE) {
     return {
-      x: arr.map(d => d.gdp),
-      y: arr.map(d => d.inc),
-      text: arr.map(d => d.g),
-      mode: "markers+text",
-      type: "scatter",
-      name,
-      marker: {
-        color,
-        size: 11,
-        line: { color: "rgba(255,255,255,0.6)", width: 1.5 }
-      },
-      textposition: "top center",
-      textfont: { size: 9, color: "#3d3028" },
-      hovertemplate: "<b>%{text}</b><br>GDP per capita (PPS): %{x}<br>Median income: €%{y:,.0f}<extra></extra>"
+      x: arr.map(d => d.gdp), y: arr.map(d => d.inc), text: arr.map(d => d.g),
+      mode: "markers+text", type: "scatter",
+      name: isCEE ? "CEE EU members" : "Northwestern Europe",
+      marker: { color: isCEE ? RED : BLUE, size: 10, line: { color: "rgba(255,255,255,0.5)", width: 1.5 } },
+      textposition: "top center", textfont: { size: 9, color: "#3d3028" },
+      hovertemplate: "<b>%{text}</b><br>GDP (PPS): %{x}<br>Median income: \u20ac%{y:,.0f}<extra></extra>"
     };
   }
-
-  // EU average reference point
-  const euTrace = {
-    x: [100], y: [21245],
-    text: ["EU avg"],
-    mode: "markers+text",
-    type: "scatter",
-    name: "EU average",
-    marker: { color: "#888", size: 10, symbol: "diamond" },
-    textposition: "top center",
-    textfont: { size: 9, color: "#888" },
-    hovertemplate: "<b>EU average</b><br>GDP: 100<br>Median income: €21,245<extra></extra>"
-  };
-
-  Plotly.react("chart", [makeTrace(cee, true), makeTrace(nw, false), euTrace], {
-    ...LAYOUT_BASE,
-    title: titleLayout("GDP per Capita vs Median Household Income, 2024"),
-    xaxis: {
-      title: { text: "GDP per capita (PPS, EU=100)", font: { size: 12 } },
-      tickfont: { size: 11 },
-      gridcolor: "#ddd5c4",
-      zeroline: false
-    },
-    yaxis: {
-      title: { text: "Median equivalised net income (PPS, €)", font: { size: 12 } },
-      tickfont: { size: 11 },
-      gridcolor: "#ddd5c4",
-      zeroline: false
-    },
-    legend: {
-      x: 0.02, y: 0.98,
-      font: { size: 11 }
-    }
+  Plotly.react("chart", [trace(cee, true), trace(nw, false), {
+    x: [100], y: [21245], text: ["EU avg"],
+    mode: "markers+text", type: "scatter", name: "EU average",
+    marker: { color: "#888", size: 9, symbol: "diamond" },
+    textposition: "top center", textfont: { size: 9, color: "#888" },
+    hovertemplate: "<b>EU average</b><br>GDP: 100<br>Median: \u20ac21,245<extra></extra>"
+  }], {
+    ...BASE,
+    title: chartTitle("GDP per Capita vs Median Household Income, 2024"),
+    xaxis: { title: { text: "GDP per capita (PPS, EU=100)", font: { size: 11 } }, tickfont: { size: 11 }, gridcolor: "#ddd5c4", zeroline: false },
+    yaxis: { title: { text: "Median income (\u20ac)", font: { size: 11 } }, tickfont: { size: 11 }, gridcolor: "#ddd5c4", zeroline: false },
+    legend: { x: 0.02, y: 0.98, font: { size: 11 } }
   });
 }
 
-// ---- CHART 3: INFLATION ----
 function drawInflation() {
   const { geo, hicp, pli_change } = INFLATION_DATA;
-
-  const filtered = geo.map((g, i) => ({ g, h: hicp[i], p: pli_change[i] }))
-    .filter(d => d.h != null && (CEE_COUNTRIES.has(d.g) || NW_COUNTRIES.has(d.g)));
-
-  const cee = filtered.filter(d => CEE_COUNTRIES.has(d.g));
-  const nw  = filtered.filter(d => NW_COUNTRIES.has(d.g));
-
-  function makeTrace(arr, isCEE) {
-    const color = isCEE ? CEE_COLOR : NW_COLOR;
-    const name  = isCEE ? "CEE EU members" : "Northwestern Europe";
+  const all = geo.map((g, i) => ({ g, h: hicp[i], p: pli_change[i] })).filter(d => d.h != null && (CEE.has(d.g) || NW.has(d.g)));
+  const cee = all.filter(d => CEE.has(d.g));
+  const nw  = all.filter(d => NW.has(d.g));
+  function trace(arr, isCEE) {
     return {
-      x: arr.map(d => d.h),
-      y: arr.map(d => d.p),
-      text: arr.map(d => d.g),
-      mode: "markers+text",
-      type: "scatter",
-      name,
-      marker: {
-        color,
-        size: 11,
-        line: { color: "rgba(255,255,255,0.6)", width: 1.5 }
-      },
-      textposition: "top center",
-      textfont: { size: 9, color: "#3d3028" },
-      hovertemplate: "<b>%{text}</b><br>HICP 2022: %{x:.1f}%<br>PLI change 2021–23: %{y:+.1f}<extra></extra>"
+      x: arr.map(d => d.h), y: arr.map(d => d.p), text: arr.map(d => d.g),
+      mode: "markers+text", type: "scatter",
+      name: isCEE ? "CEE EU members" : "Northwestern Europe",
+      marker: { color: isCEE ? RED : BLUE, size: 10, line: { color: "rgba(255,255,255,0.5)", width: 1.5 } },
+      textposition: "top center", textfont: { size: 9, color: "#3d3028" },
+      hovertemplate: "<b>%{text}</b><br>HICP 2022: %{x:.1f}%<br>PLI change: %{y:+.1f}<extra></extra>"
     };
   }
-
-  Plotly.react("chart", [makeTrace(cee, true), makeTrace(nw, false)], {
-    ...LAYOUT_BASE,
-    title: titleLayout("Inflation (HICP 2022) vs Price Level Change 2021–2023"),
-    xaxis: {
-      title: { text: "Consumer price inflation 2022 (HICP, %)", font: { size: 12 } },
-      tickfont: { size: 11 },
-      gridcolor: "#ddd5c4",
-      zeroline: false
-    },
-    yaxis: {
-      title: { text: "Change in Price Level Index, 2021→2023", font: { size: 12 } },
-      tickfont: { size: 11 },
-      gridcolor: "#ddd5c4",
-      zeroline: true, zerolinecolor: "#aaa", zerolinewidth: 1.5
-    },
-    legend: {
-      x: 0.02, y: 0.98,
-      font: { size: 11 }
-    },
-    shapes: [{
-      type: "line",
-      x0: 0, y0: 0, x1: 22, y1: 0,
-      line: { color: "#aaa", width: 1.2, dash: "dash" }
-    }]
+  Plotly.react("chart", [trace(cee, true), trace(nw, false)], {
+    ...BASE,
+    title: chartTitle("Inflation (HICP 2022) vs Price Level Change 2021\u20132023"),
+    xaxis: { title: { text: "Consumer price inflation 2022 (%)", font: { size: 11 } }, tickfont: { size: 11 }, gridcolor: "#ddd5c4", zeroline: false },
+    yaxis: { title: { text: "Change in PLI, 2021\u21922023", font: { size: 11 } }, tickfont: { size: 11 }, gridcolor: "#ddd5c4", zeroline: true, zerolinecolor: "#bbb", zerolinewidth: 1.2 },
+    legend: { x: 0.02, y: 0.98, font: { size: 11 } }
   });
 }
 
-// ---- SCROLL ----
 function initScroll() {
   const steps = document.querySelectorAll(".step");
-
   const obs = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (e.isIntersecting) {
         steps.forEach(s => s.classList.remove("active"));
         e.target.classList.add("active");
-
-        const step = +e.target.dataset.step;
-        if (step === 0) drawMap();
-        if (step === 1) drawLine();
-        if (step === 2) drawScatter();
-        if (step === 3) drawInflation();
+        const n = +e.target.dataset.step;
+        if (n === 0) drawMap();
+        if (n === 1) drawLine();
+        if (n === 2) drawScatter();
+        if (n === 3) drawInflation();
       }
     });
   }, { threshold: 0.55 });
-
   steps.forEach(s => obs.observe(s));
 }
 
-// ---- INIT ----
 drawMap();
 initScroll();
 
 </script>
-
 </body>
 </html>
